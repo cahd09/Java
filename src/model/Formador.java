@@ -6,8 +6,8 @@ public class Formador {
 
     public Formador(String nombre, int codigo) {
         super();
-        this.codigo = codigo;
-        this.nombre = nombre;
+        this.codigo = 0;
+        this.nombre = "Jon Doe";
     }
 
     public int getCodigo() {
@@ -18,6 +18,14 @@ public class Formador {
         return nombre;
     }
 
-    
-    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        //TODO Auto-generated method stub
+        //return super.toString();
+        return "Nombre: "+ nombre + " Codigo: "+ codigo;
+    }
 }

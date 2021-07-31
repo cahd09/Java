@@ -1,8 +1,14 @@
 package model;
 
-public class Tripulante {
-    /** Atributos */
+import java.util.ArrayList;
 
+public class Tripulante {
+
+    /** Constantes */
+    // Controlar la nota maxima que puede ser asignada
+    public final static double NOTA_MAXIMA = 5.0;
+
+    /** Atributos */
     private String nombre;
     private int id;
     private double nota1;
@@ -11,32 +17,50 @@ public class Tripulante {
     private float numeroIdentificacion;
     private String email;
 
+    // Lista de cursos
+    private ArrayList<Curso> curso;
+
+    // Constructor vacío para evitar error en el APP, uno de los constructores queda vacío y el otro con los parametros
+    public Tripulante() {
+        super();        
+    }
+
+     // Constructor del tripulante - se agrega p para diferenciarlas de la variables, la p es opcional
+     public Tripulante (String pnombre, int pid, double pnota1, double pnota2, double pnota3, float pnumeroIndetificacion, String pemail) {
+        super();
+        this.nombre = pnombre;
+        this.id = pid;
+        this.nota1 = pnota1;
+        this.nota2 = pnota2;
+        this.nota3 = pnota3;
+        this.numeroIdentificacion = pnumeroIndetificacion;
+        this.email = pemail;
+        curso = new ArrayList<>();
+    }
 
     /**Getters */
+    public ArrayList<Curso> getCurso() {
+        return curso;
+    }
+
     public String getNombre() {
         return nombre;
     }
-
     public int getId() {
         return id;
     }
-
     public double getNota1() {
         return nota1;
     }
-
     public double getNota2() {
         return nota2;
     }
-    
     public double getNota3() {
         return nota3;
     }
-
     public float getNumeroIdentificacion() {
         return numeroIdentificacion;
     }
-
     public String getEmail() {
         return email;
     }
@@ -45,21 +69,34 @@ public class Tripulante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public void setNota1(double nota1) {
-        this.nota1 = nota1;
+        // Controlar que la nota no sea mayor que 5
+        if(nota1 <= NOTA_MAXIMA) {
+            this.nota1 = nota1;   
+        } else {
+            System.out.println("No se puede ingresar la nota, la nota más alta puede ser " + NOTA_MAXIMA);  
+        }
     }
 
     public void setNota2(double nota2) {
-        this.nota2 = nota2;
+        if(nota2 <= NOTA_MAXIMA) { // // Controlar que la nota no sea mayor que 5
+            this.nota2 = nota2;
+        } else {
+            System.out.println("No se puede ingresar la nota, la nota más alta puede ser " + NOTA_MAXIMA);       
+        }
     }
     
     public void setNota3(double nota3) {
-        this.nota3 = nota3;
+        if(nota3 <= NOTA_MAXIMA) { // // Controlar que la nota no sea mayor que 5
+            this.nota3 = nota3;
+        } else {
+            System.out.println("No se puede ingresar la nota, la nota más alta puede ser " + NOTA_MAXIMA);           
+        }
     }
 
     public void setNumeroIdentificacion (float numeroIdentificacion) {
