@@ -26,6 +26,8 @@ public class PanelOpciones extends JPanel implements ActionListener{
         // Se indican filas y columnas que puede tener
         setLayout(new GridLayout(1, 3));
 
+        vistaPrincipal = v;
+
         //Inicializar boton
         opcion1 = new JButton(OPCION_1);
         btnAddCurso = new JButton(BTN_ADD_CURSO);
@@ -44,8 +46,6 @@ public class PanelOpciones extends JPanel implements ActionListener{
 
     public void addCurso() {
         //JOptionPane.showMessageDialog(vistaPrincipal, "Un mensaje");
-        String nombre = JOptionPane.showInputDialog(vistaPrincipal, "Digita el nombre del curso ");
-        String codigo = JOptionPane.showInputDialog(vistaPrincipal, "Digita el codigo del curso ");
         String[] options = new String[3];
         options[0] = "Mañana";
         options[1] = "Tarde";
@@ -54,14 +54,16 @@ public class PanelOpciones extends JPanel implements ActionListener{
         optionsShort[0] = 'M';
         optionsShort[1] = 'T';
         optionsShort[2] = 'N';
+        String nombre = JOptionPane.showInputDialog(vistaPrincipal, "Digita el nombre del curso ");
+        String codigo = JOptionPane.showInputDialog(vistaPrincipal, "Digita el codigo del curso ");
         int option = JOptionPane.showOptionDialog(vistaPrincipal, "Escoge una opción ", "Jornada del curso", 0, 
                         JOptionPane.PLAIN_MESSAGE, null, options, null);
-        System.out.println(option);
+        //System.out.println(option);
         
         // validar si el usuario si esa ingresando información en el campo
         if(nombre!=null && !nombre.equals("") && option != -1 && codigo != ""){
             vistaPrincipal.addCurso(Integer.parseInt(codigo), nombre, optionsShort[option]);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(vistaPrincipal, "Revisa los datos", "Error en los datos", 
                 JOptionPane.ERROR_MESSAGE);
         }
@@ -76,11 +78,11 @@ public class PanelOpciones extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         if (e.getActionCommand().equals(OPCION_1)){
-            //System.out.println("hola");
             listCursos();
+            //System.out.println("hola");
         } else if(e.getActionCommand().equals(BTN_ADD_CURSO)) {
-            //System.out.println("Agregar un curso");
             addCurso();
+            //System.out.println("Agregar un curso");
         }
     }
 }

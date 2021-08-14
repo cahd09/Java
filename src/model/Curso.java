@@ -1,13 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.concurrent.Flow.Publisher;
 
 public class Curso {
 
      /** Constantes */
      //Controlar la cantidad de tripulantes que se pueden crear
-    public final static int MAXIMO_TRIPULANTES = 3;
+    public static final int MAXIMO_TRIPULANTES = 3;
 
     /** Atributos */
     private int codigo;

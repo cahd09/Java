@@ -42,7 +42,6 @@ public class Tripulante {
     public ArrayList<Curso> getCurso() {
         return curso;
     }
-
     public String getNombre() {
         return nombre;
     }
@@ -69,11 +68,9 @@ public class Tripulante {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
     public void setId(int id) {
         this.id = id;
     }
-    
     public void setNota1(double nota1) {
         // Controlar que la nota no sea mayor que 5
         if(nota1 <= NOTA_MAXIMA) {
@@ -102,7 +99,6 @@ public class Tripulante {
     public void setNumeroIdentificacion (float numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;        
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -112,14 +108,23 @@ public class Tripulante {
     }
 
     public double getHighNote() {
-        if (nota1 >= nota2 && nota1 >= nota3) {
-            return nota1;            
-        }else if(nota2 >= nota3){
-            return nota2;
+        double respuesta;
+
+        if(nota1 >= nota2){
+            if (nota1 >= nota3) {
+                respuesta = nota1;
+            }else{
+                respuesta = nota3;
+            }
         }else{
-            return nota3;
+            if (nota2 >= nota3) {
+                respuesta = nota2;
+            }else{
+                respuesta = nota3;
+            }
         }
-    }
+        return respuesta;
+    }    
 
     public double getLowNote() {
         if (nota1 <= nota2 && nota1 <= nota3) {
@@ -132,7 +137,7 @@ public class Tripulante {
     }
 
     public boolean chekIfPass() {
-        if(getAverage() >= 3) {
+        if(getAverage() <= 3) {
             return true;
         }
         return false;
