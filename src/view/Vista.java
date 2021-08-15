@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.CursoController;
+import model.Curso;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -34,12 +35,14 @@ Se comenta esta línea por la implementación de JFrame en Vista
 
         private PanelOpciones panelOpc;
         private PanelCurso panelCurso;
-        private CursoController cursoController;
         private PanelListaCursos panelListaCursos;
+        private PanelDetalleCurso panelDetalleCurso;
+        private CursoController cursoController;
+
 
         public Vista() {
             super();
-            setSize(700, 400);
+            setSize(800, 400);
             setTitle("Tripulantes");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Sirve para cerrar el proceso
             setLayout(new BorderLayout());
@@ -49,11 +52,13 @@ Se comenta esta línea por la implementación de JFrame en Vista
             panelOpc = new PanelOpciones(this);
             panelCurso = new PanelCurso(this);
             panelListaCursos = new PanelListaCursos(this);
+            panelDetalleCurso = new PanelDetalleCurso(this);
 
             JPanel panelAuxiliar = new JPanel();
             panelAuxiliar.setLayout(new GridLayout(1,4));
             panelAuxiliar.add(panelCurso);
             panelAuxiliar.add(panelListaCursos);
+            panelAuxiliar.add(panelDetalleCurso);
             add(panelAuxiliar, BorderLayout.CENTER);
             add(panelOpc, BorderLayout.SOUTH);
         }
@@ -67,6 +72,12 @@ Se comenta esta línea por la implementación de JFrame en Vista
             return cursoController.listCursos();
         }
 
+        public void updateInformationCursos() {
+            Curso c = cursoController.getCursos().get(panelListaCursos.getActiveCurso());
+            panelDetalleCurso.updateInformationCursos(
+                c.getNombre(), c.getCodigo(), c.getJornada(), c.getTripulantes().size());
+        }
+ 
         public void updateListaCursos() {
             panelListaCursos.updateListaCursos(cursoController.listCursosData());
         }
