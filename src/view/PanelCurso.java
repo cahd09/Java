@@ -44,9 +44,9 @@ public class PanelCurso extends JPanel implements ActionListener {
 
     public void addCurso(){
         //validar que ingrese texto y no contar espacios en blanco
-        if (!txtNombre.getText().equals(null) && txtNombre.getText().trim().equals(null)){
-            if (!txtCodigo.getText().equals(null) && txtCodigo.getText().trim().equals(null)){
-                if (!txtJornada.getText().equals(null) && txtJornada.getText().trim().equals(null)){
+        if (!txtNombre.getText().equals(null) && !txtNombre.getText().trim().equals(null)){
+            if (!txtCodigo.getText().equals(null) && !txtCodigo.getText().trim().equals(null)){
+                if (!txtJornada.getText().equals(null) && !txtJornada.getText().trim().equals(null)){
                     vistaPrincipal.addCurso(Integer.parseInt(txtCodigo.getText()),
                         txtNombre.getText(), txtJornada.getText().trim().charAt(0));
                     txtNombre.setText("");
@@ -67,6 +67,7 @@ public class PanelCurso extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         addCurso();
         if (e.getActionCommand().equals(btnCrear.getActionCommand())) {
+            addCurso();
         }
         
     }

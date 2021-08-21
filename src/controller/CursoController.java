@@ -2,14 +2,17 @@ package controller;
 
 import java.util.ArrayList;
 import model.Curso;
+import services.JavaMySQL;
 
 public class CursoController {
 
+private JavaMySQL serviceDB;
     private ArrayList<Curso> cursos;
 
     public CursoController () {
         super();
         cursos = new ArrayList<>();
+        serviceDB = new JavaMySQL();
     }
     
     public ArrayList<Curso> getCursos() {
@@ -17,6 +20,7 @@ public class CursoController {
     }
 
     public void addCurso(int pCodigo, String pNombre, char pJornada) {
+        serviceDB.insertCurso(pNombre,  pCodigo, pJornada); // insertar curso en la BD
         Curso c = new Curso(pCodigo, pNombre, pJornada);
         cursos.add(c);
     }
