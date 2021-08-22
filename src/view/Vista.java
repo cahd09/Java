@@ -61,6 +61,7 @@ Se comenta esta línea por la implementación de JFrame en Vista
             panelAuxiliar.add(panelDetalleCurso);
             add(panelAuxiliar, BorderLayout.CENTER);
             add(panelOpc, BorderLayout.SOUTH);
+            updateListaCursos();
         }
 
         public void addCurso(int pCodigo, String pNombre, char pJornada) {
@@ -74,8 +75,10 @@ Se comenta esta línea por la implementación de JFrame en Vista
 
         public void updateInformationCursos() {
             Curso c = cursoController.getCursos().get(panelListaCursos.getActiveCurso());
-            panelDetalleCurso.updateInformationCursos(
+            panelDetalleCurso.updateInformationCursos( // Mostrar datos en el panle derecho
                 c.getNombre(), c.getCodigo(), c.getJornada(), c.getTripulantes().size());
+                panelCurso.updateInformationCurso( // Mostrar datos en el panel izquierdo
+                    c.getNombre(), c.getCodigo(), c.getJornada());
         }
  
         public void updateListaCursos() {

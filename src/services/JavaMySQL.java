@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -56,7 +57,14 @@ public class JavaMySQL {
         executeInserStatement(sql);
     }
 
-    // Actualizar en la BD
+    // Consultar lo que tengo en la BD
+    public ResultSet getCursosDB() {
+        String sql = "SELECT * FROM cursos";
+        return executeQueryStatement(sql);
+        
+    }
+
+    // Inser en la BD con el metodo inserCurso
     public void executeInserStatement(String sql) {
         try {
             Statement stmt = connection.createStatement();
@@ -64,6 +72,17 @@ public class JavaMySQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // Consultar lo que tengo en la BD con el metodo ResulSet
+    public ResultSet executeQueryStatement(String sql) {
+        try {
+            Statement stmt = connection.createStatement();
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace(); // sirve para mostrar los errores del código
+        }
+        return null;
     }
 
 }

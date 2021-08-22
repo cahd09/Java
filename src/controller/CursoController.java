@@ -1,6 +1,9 @@
 package controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 import model.Curso;
 import services.JavaMySQL;
 
@@ -13,6 +16,7 @@ private JavaMySQL serviceDB;
         super();
         cursos = new ArrayList<>();
         serviceDB = new JavaMySQL();
+        fillCursosData();
     }
     
     public ArrayList<Curso> getCursos() {
@@ -39,5 +43,19 @@ private JavaMySQL serviceDB;
             listData[i] = cursos.get(i).toString();
         }
         return listData;
+    }
+
+    // Consulta de cursos, viene de JavaMySQL ResultSet
+    public void fillCursosData() {
+        cursos.clear();
+        ResultSet rs = serviceDB.getCursosDB();
+        try {
+            while (rs.next()) {
+                Curso curso = new Curso(rs.getInt("codigo"), rs.getString("nombre"), rs.getString("jornada").charAt(0));
+                cursos.add(curso);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

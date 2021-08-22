@@ -41,6 +41,13 @@ public class PanelCurso extends JPanel implements ActionListener {
         add(txtJornada);
         add(btnCrear);
     }
+    
+    // Mostrar datos de la BD en el panel derecho
+    public void updateInformationCursos(String nombre, int codigo, char jornada) {
+        txtNombre.setText(nombre);
+        txtCodigo.setText(codigo+"");
+        txtJornada.setText(jornada+"");
+    }
 
     public void addCurso(){
         //validar que ingrese texto y no contar espacios en blanco
@@ -68,7 +75,6 @@ public class PanelCurso extends JPanel implements ActionListener {
         addCurso();
         if (e.getActionCommand().equals(btnCrear.getActionCommand())) {
             addCurso();
-        }
-        
+        }        
     }
 }

@@ -32,12 +32,12 @@ public class PanelDetalleCurso extends JPanel {
         add(lblTripulantes);
     }
 
+    // Mostrar datos de la BD en el panel izquierdo
     public void updateInformationCursos(String nombre, int codigo, char jornada, int tripulantes) {
         lblNombre.setText("Nombre: "+nombre);
         lblCodigo.setText("Código: "+codigo);
         lblJornada.setText("Jornada: "+jornada);
         lblTripulantes.setText("Tripluantes: "+tripulantes);
-
     }
 
 }
